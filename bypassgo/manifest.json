@@ -1,0 +1,35 @@
+{
+  "name": "Go directly",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Bypass google mouse click tracking",
+
+  "icons": { 
+    "16": "icon-16.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png" 
+  },
+	  
+  
+  "browser_action": {
+    "default_icon": "icon-16.png",
+    "default_title": "Remove google mouse tracking ref"
+  },
+  
+  "background": {
+    "scripts": ["background.js"]
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["http://www.google.com/*", "https://www.google.com/*", "http://www.google.cn/*", "https://www.google.cn/*", "http://www.google.com.hk/*", "https://www.google.com.hk/*"],
+      "js": ["content.js"],
+      "run_at" : "document_end"
+    }
+  ],
+  
+  "permissions": [
+    "tabs",
+    "http://*/*"
+  ]
+}

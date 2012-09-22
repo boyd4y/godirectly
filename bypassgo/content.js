@@ -8,6 +8,16 @@ var runOnce = function(){
     console.log("inject began " + items.length);
     
     for(var i = 0, len = items.length; i< len; i++){
+        var href = items[i].getAttribute('href');
+	var embeddedlinkPattern = RegExp('url=(http.+?)&');
+	var matchrefs = embeddedlinkPattern.exec(href);
+	if (matchrefs != null && matchrefs.length > 1)
+	{
+	    var newhref = decodeURIComponent(matchrefs[1]);
+	    items[i].setAttribute('href', newhref);
+	    console.log("\t decode url to" + newhref);
+	}
+	
         items[i].removeAttribute('onmousedown');
     }
     
